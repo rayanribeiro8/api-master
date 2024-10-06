@@ -1,0 +1,113 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "API para gerenciar notícias",
+        "version": "1.0.0",
+        "title": "API de Notícias"
+    },
+    "basePath": "/",
+    "paths": {
+        "/news": {
+            "get": {
+                "summary": "Listar todas as notícias",
+                "responses": {
+                    "200": {
+                        "description": "Listagem de todas as notícias"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Criar uma nova notícia",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/News"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Notícia criada"
+                    }
+                }
+            }
+        },
+        "/news/{id}": {
+            "get": {
+                "summary": "Obter uma notícia pelo ID",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Detalhes da notícia"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Atualizar uma notícia",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/News"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notícia atualizada"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Deletar uma notícia",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notícia deletada"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "News": {
+            "type": "object",
+            "properties": {
+                "title": {
+                    "type": "string"
+                },
+                "body": {
+                    "type": "string"
+                },
+                "author": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
